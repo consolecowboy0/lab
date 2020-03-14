@@ -1,10 +1,13 @@
 Package: lab
-Type: Package
-Title: R package for developing new ML
-Version: 0.1.0
-Author: Dustin Landers
-Maintainer: Dustin Landers <dustin.landers@gmail.comt>
+Title: Useful functions for developing ML and AI processes
+Version: 0.0.1
+Authors@R: 
+    person(given = "Dustin",
+           family = "Landers",
+           role = c("aut", "cre"),
+           email = "dustin.landers@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: The goal of lab is to provide useful functionality for experimenting with the development of machine learning and articifical intelligence related algorithms.
-License: MIT License
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

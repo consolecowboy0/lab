@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The goal of lab is to provide useful functionality for experimenting
@@ -25,13 +27,4 @@ And the development version from [GitHub](https://github.com/) with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("mtnman38/lab")
-```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(lab)
-## basic example code
 ```
