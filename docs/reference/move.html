@@ -117,16 +117,16 @@
     <p>Method for goose_race class object to move the goose</p>
     </div>
 
-    <pre class="usage"><span class='fu'>move</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+    <pre class="usage"><span class='fu'>move</span>(<span class='no'>gr</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
 <span class='co'># S3 method for goose_race</span>
-<span class='fu'>move</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+<span class='fu'>move</span>(<span class='no'>gr</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
+      <th>gr</th>
       <td><p>dataframe to adjust</p></td>
     </tr>
     <tr>
@@ -149,29 +149,32 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>gr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='goose_race.html'>goose_race</a></span>()
 <span class='fu'>move</span>(<span class='no'>gr</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; $locations
-#&gt; <span style='color: #555555;'># A tibble: 100 x 4</span><span>
-#&gt;        x     y obstacle_present ending_point
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1     1                0            0
-#&gt; </span><span style='color: #555555;'> 2</span><span>     1     2                0            0
-#&gt; </span><span style='color: #555555;'> 3</span><span>     1     3                0            0
-#&gt; </span><span style='color: #555555;'> 4</span><span>     1     4                0            0
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1     5                0            0
-#&gt; </span><span style='color: #555555;'> 6</span><span>     1     6                0            0
-#&gt; </span><span style='color: #555555;'> 7</span><span>     1     7                0            0
-#&gt; </span><span style='color: #555555;'> 8</span><span>     1     8                0            0
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1     9                0            0
-#&gt; </span><span style='color: #555555;'>10</span><span>     1    10                0            0
+#&gt; <span style='color: #555555;'># A tibble: 100 x 3</span><span>
+#&gt;        x     y obstacle_present
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     1     1                0
+#&gt; </span><span style='color: #555555;'> 2</span><span>     1     2                0
+#&gt; </span><span style='color: #555555;'> 3</span><span>     1     3                0
+#&gt; </span><span style='color: #555555;'> 4</span><span>     1     4                0
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1     5                0
+#&gt; </span><span style='color: #555555;'> 6</span><span>     1     6                0
+#&gt; </span><span style='color: #555555;'> 7</span><span>     1     7                0
+#&gt; </span><span style='color: #555555;'> 8</span><span>     1     8                0
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1     9                0
+#&gt; </span><span style='color: #555555;'>10</span><span>     1    10                0
 #&gt; </span><span style='color: #555555;'># … with 90 more rows</span><span>
 #&gt; 
 #&gt; $starting_point
 #&gt; [1] 1 1
 #&gt; 
+#&gt; $ending_point
+#&gt; [1] 100 100
+#&gt; 
 #&gt; $current_location
 #&gt; [1] 2 2
 #&gt; 
 #&gt; $on_obstacle
-#&gt; logical(0)
+#&gt; [1] FALSE
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "goose_race"</div><div class='input'>
