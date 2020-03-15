@@ -16,6 +16,7 @@ Imports:
     reticulate (>= 1.14),
     purrr (>= 0.3.3),
     tidyr (>= 1.0.2),
+    dplyr (>= 0.8.5)
 Suggests: 
     testthat (>= 2.1.0)
 Roxygen: list(markdown = TRUE)

@@ -21,13 +21,12 @@ goose_race <- function(x = 10,
                                         size = n_grid,
                                         replace = TRUE,
                                         prob = p)
-  try(if(length(starting_point) != 2) stop("Vector length for starting point must be two"))
-  try(if(length(ending_point) != 2) stop("Vector length for ending point must be two"))
-  basic_grid$ending_point <- ifelse(basic_grid$x == ending_point[1] &
-                                    basic_grid$y == ending_point[2], 1, 0)
+  if(length(starting_point) != 2) stop("Vector length for starting point must be two")
+  if(length(ending_point) != 2) stop("Vector length for ending point must be two")
   rowx <- which(basic_grid$x == starting_point[1] & basic_grid$y == starting_point[2])
   object <- structure(list(locations = basic_grid,
                            starting_point = starting_point,
+                           ending_point = ending_point,
                            current_location = starting_point,
                            on_obstacle = basic_grid$obstacle_present[rowx] == 1),
                       class = "goose_race")

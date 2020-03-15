@@ -5,12 +5,12 @@
 \alias{move.goose_race}
 \title{Method for goose_race class object to move the goose}
 \usage{
-move(df, x = 1, y = 1)
+move(gr, x = 1, y = 1)
 
-\method{move}{goose_race}(df, x = 1, y = 1)
+\method{move}{goose_race}(gr, x = 1, y = 1)
 }
 \arguments{
-\item{df}{dataframe to adjust}
+\item{gr}{dataframe to adjust}
 
 \item{x}{integer distance to move along the x axis}
 

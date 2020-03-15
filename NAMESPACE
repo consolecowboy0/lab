@@ -1,1 +1,3 @@
 exportPattern("^[[:alpha:]]+")
+S3method("move", "goose_race")
+S3method("look", "goose_race")
