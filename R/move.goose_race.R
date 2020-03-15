@@ -11,6 +11,8 @@
 #' @export
 move <- function(gr, x = 1, y = 1) UseMethod("move")
 
+#' @export
+#' @method move goose_race
 #' @describeIn move Applied to a goose_race class
 move.goose_race <- function(gr, x = 1, y = 1) {
   if(x > 1 | y > 1) stop("Cannot move more than 1 unit in either direction")

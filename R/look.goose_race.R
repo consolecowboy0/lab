@@ -11,6 +11,8 @@
 look <- function(gr, distance = 2) UseMethod("look")
 
 #' @describeIn look Applied to a goose_race class
+#' @export
+#' @method look goose_race
 look.goose_race <- function(gr, distance = 2) {
   test <- gr$locations
   test$current_x <- gr$current_location[1]
