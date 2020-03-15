@@ -2,8 +2,7 @@
 % Please edit documentation in R/goose_race.R
 \name{goose_race}
 \alias{goose_race}
-\title{Build an experiment of a goose moving around a grid.
-This particular function will create the grid with certain elements blocking the path.}
+\title{Build an experiment of a goose moving around a grid.}
 \usage{
 goose_race(
   x = 10,
@@ -28,9 +27,8 @@ goose_race(
 \item{ending_point}{vector of length two, e.g., \code{c(x, y)} for where to end the race}
 }
 \value{
-A tibble containing the state of the goose race
+An object of type goose with locations (a tibble), starting_point (numeric), current_location (nuemric), on_obstacle (logical)
 }
 \description{
 Build an experiment of a goose moving around a grid.
-This particular function will create the grid with certain elements blocking the path.
 }

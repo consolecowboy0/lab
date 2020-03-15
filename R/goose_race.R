@@ -1,5 +1,4 @@
 #' Build an experiment of a goose moving around a grid.
-#' This particular function will create the grid with certain elements blocking the path.
 #'
 #' @param x integer width of the grid
 #' @param y integer height of the grid
@@ -7,7 +6,7 @@
 #' @param p vector of probability of finding an obstacle and not
 #' @param starting_point vector of length two, e.g., \code{c(x, y)} for where to start the goose
 #' @param ending_point vector of length two, e.g., \code{c(x, y)} for where to end the race
-#' @return A tibble containing the state of the goose race
+#' @return An object of type goose with locations (a tibble), starting_point (numeric), current_location (nuemric), on_obstacle (logical)
 #'
 #' @export
 goose_race <- function(x = 10,
@@ -24,9 +23,13 @@ goose_race <- function(x = 10,
                                         prob = p)
   try(if(length(starting_point) != 2) stop("Vector length for starting point must be two"))
   try(if(length(ending_point) != 2) stop("Vector length for ending point must be two"))
-  basic_grid$goose_location <- ifelse(basic_grid$x == starting_point[1] &
-                                      basic_grid$y == starting_point[2], 1, 0)
   basic_grid$ending_point <- ifelse(basic_grid$x == ending_point[1] &
                                     basic_grid$y == ending_point[2], 1, 0)
-  return(basic_grid)
+  rowx <- which(basic_grid$x == starting_point[1] & basic_grid$y == starting_point[2])
+  object <- structure(list(locations = basic_grid,
+                           starting_point = starting_point,
+                           current_location = starting_point,
+                           on_obstacle = basic_grid$obstacle_present[rowx] == 1),
+                      class = "goose_race")
+  return(object)
 }
