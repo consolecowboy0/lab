@@ -10,7 +10,7 @@ goose_race(
   n = 30,
   p = c(0.1, 0.99),
   starting_point = c(1, 1),
-  ending_point = c(100, 100)
+  ending_point = c(10, 10)
 )
 }
 \arguments{

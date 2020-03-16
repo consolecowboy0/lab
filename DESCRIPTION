@@ -1,6 +1,6 @@
 Package: lab
 Title: Useful functions for developing ML and AI processes
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Dustin",
            family = "Landers",
@@ -17,8 +17,7 @@ Imports:
     purrr (>= 0.3.3),
     tidyr (>= 1.0.2),
     dplyr (>= 0.8.5),
-    ggplot2,
-    methods
+    ggplot2 (>= 3.3.0)
 Suggests: 
     testthat (>= 2.1.0)
 Roxygen: list(markdown = TRUE)

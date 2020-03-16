@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of **lab** is to provide useful functionality for experimenting with the development of machine learning and articifical intelligence related algorithms. Specifically, lab serves as a laboratory for developing novel ML/RL/AI methods.
+The goal of **lab** is to provide useful functionality for experimenting with the development of machine learning and articifical intelligence related algorithms. Specifically, **lab** serves as a laboratory for developing novel ML/RL/AI methods.
 
 ## Installation
 
@@ -76,12 +76,117 @@ extract_features <- function(gr) {
   feature_df %>%
     dplyr::select(direction, obstacle_present) %>%
     tidyr::pivot_wider(names_from = direction, values_from = obstacle_present) %>%
-    mutate(current_x = gr$current_location[1], current_y = gr$current_location[2])
+    dplyr::mutate(current_x = gr$current_location[1], current_y = gr$current_location[2])
 }
 ```
 
+You can see how we might use this to try to build a basic model to guide the goose's behavior in the goose_race. Let's go through one random iteration first, so we can see how it might pan out.
 
+```{r}
+random_model <- function(gr) {
+  movement <- sample(c(0, 1), 2, replace = TRUE)
+  return(movement)
+}
 
+run_iteration <- function(gr, n = 20) {
+  df <- tibble::tibble(north = double(),
+                       south = double(),
+                       east = double(),
+                       west = double(),
+                       current_x = double(),
+                       current_y = double(),
+                       immediate_utility = double(),
+                       eventual_utility = double(),
+                       move_x = double(),
+                       move_y = double())
+  for (i in 1:n) {
+    tryCatch({
+      movement <- random_model()
+      features <- extract_features(gr)
+      gr <- move(gr, movement[1], movement[2])
+      df <- tibble::add_row(df,
+                            north = features$north,
+                            south = features$south,
+                            east = features$east,
+                            west = features$west,
+                            current_x = features$current_x,
+                            current_y = features$current_y,
+                            immediate_utility = !as.numeric(gr$on_obstacle),
+                            move_x = movement[1],
+                            move_y = movement[2])
+        },
+      error = function(e) i <- n
+      )
+  }
+  df$eventual_utility <- as.numeric(!(FALSE %in% c(gr$current_location == gr$ending_point)))
+  return(df)
+}
+```
 
+We've built out a simple model for moving our goose at random, but we are just building out a dataset. Soon, we will build a model and see if the goose can improve based on many iterations of the goose running the race.
 
+First, lets run through the race about 100 times.
 
+```{r}
+run_everything <- function(x) {
+  gr <- goose_race()
+  return(run_iteration(gr, n = 20))
+}
+
+results <- purrr::map_dfr(1:100, run_everything)
+```
+
+Now we can use our result set to build a very simple model. Then we can watch how it works out.
+
+```{r}
+model_x <- glm(eventual_utility ~ north + south + east + west + current_x + current_y,
+               data = results[results$move_y == 1 & results$move_x == 0,],
+               family = "binomial")
+model_y <- glm(eventual_utility ~ north + south + east + west + current_x + current_y,
+               data = results[results$move_x == 1 & results$move_y == 0,],
+               family = "binomial")
+model_xy <- glm(eventual_utility ~ north + south + east + west + current_x + current_y,
+                data = results[results$move_x == 1 & results$move_y == 1,],
+                family = "binomial")
+model_neither <- glm(eventual_utility ~ north + south + east + west + current_x + current_y,
+                     data = results[results$move_x == 0 & results$move_y == 0,],
+                     family = "binomial")
+```
+
+We can work with this for the example, but in practice we will likely need more complex models for this particular task. It is not difficult to reason out why that is so.
+
+Let's see how it does.
+
+```{r}
+gr <- goose_race()
+plot(gr)
+```
+
+We can see our goose in the bottom right corner with all the obstacles. How should we proceed? We will consult the model.
+
+```{r}
+get_prediction <- function(gr) {
+  purrr::map(list(x = model_x,
+                  y = model_y, 
+                  xy = model_xy,
+                  neither = model_neither),
+             function(x) predict(x,
+                                 newdata = extract_features(gr),
+                                 type = "response")) %>%
+    unlist()
+}
+
+get_prediction(gr)
+```
+
+So our super basic recommends that we move in to the upper right. **lab** gives us a very easy way to do this use goose_race.
+
+```{r}
+gr <- move(gr, x = 1, y = 1)
+```
+
+**lab** also gives us a way to visualize our movements. Just simply plot the goose_race class.
+
+```{r}
+plot(gr)
+```

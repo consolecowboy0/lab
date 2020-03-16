@@ -14,7 +14,7 @@ goose_race <- function(x = 10,
                        n = 30,
                        p = c(0.1, 0.99),
                        starting_point = c(1, 1),
-                       ending_point = c(100, 100)) {
+                       ending_point = c(10, 10)) {
   basic_grid <- tidyr::expand_grid(x = 1:x, y = 1:y)
   n_grid <- nrow(basic_grid)
   basic_grid$obstacle_present <- sample(x = c(1, 0),
