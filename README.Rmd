@@ -39,7 +39,7 @@ devtools::install_github("mtnman38/lab")
 
 The purpose of **lab** is to help you get started developing, experimenting, and testing different ML/RL/AI solutions on a variety of basic problems. What's the point of this? Well, having a consistent structure to test a new method on allows you to easily reproduce results and understand when and how a certain method fails. This is obviously useful if you are interested in developing novel methods.
 
-Let's look at a very simple example that illustrates how to use this package. We will use the built in goose_game S3 class to see if we can build a very simple model to allow to goose to navigate the obstacles in the goose race. **lab** provides you with simple tools to get started, as well as importing a variety of handy libraries.
+Let's look at a very simple example that illustrates how to use this package. We will use the built in goose_game S3 class to see if we can build a very simple model to allow the goose to navigate the obstacles in the goose race. **lab** provides you with simple tools to get started, as well as importing a variety of handy libraries.
 
 We first will initialize a goose_race and take a look at what we have.
 
@@ -162,7 +162,7 @@ gr <- goose_race()
 plot(gr)
 ```
 
-We can see our goose in the bottom right corner with all the obstacles. How should we proceed? We will consult the model.
+We can see our goose in the bottom left corner with all the obstacles. How should we proceed? We will consult the model.
 
 ```{r}
 get_prediction <- function(gr) {
